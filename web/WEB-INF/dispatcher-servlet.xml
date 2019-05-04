@@ -17,6 +17,7 @@
     <context:component-scan base-package="com.fakesinsa.project"/>
 
     <bean id="userController" class="com.fakesinsa.project.controller.UserController"/>
+    <bean id="productController" class="com.fakesinsa.project.controller.ProductController"/>
     <mvc:annotation-driven/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

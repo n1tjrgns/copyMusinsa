@@ -1,5 +1,8 @@
 package com.fakesinsa.project.dao;
 
-public class ProductDao {
+import java.util.List;
+import java.util.Map;
 
+public interface ProductDao {
+    List<Map<Object,Object>> getProductInfo();
 }

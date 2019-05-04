@@ -6,10 +6,11 @@
 
     <typeAliases>
         <typeAlias type="com.fakesinsa.project.dto.UserDto" alias="userDto"/>
-
+        <typeAlias type="com.fakesinsa.project.dto.ProductDto" alias="productDto"/>
     </typeAliases>
     <mappers>
         <mapper resource="mybatis/user-mapping.xml"/>
+        <mapper resource="mybatis/product-mapping.xml"/>
     </mappers>
 
 </configuration>

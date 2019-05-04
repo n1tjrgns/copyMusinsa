@@ -2,6 +2,7 @@ package com.fakesinsa.project.controller;
 
 
 import com.fakesinsa.project.dto.UserDto;
+import com.fakesinsa.project.service.ProductDaoImpl;
 import com.fakesinsa.project.service.UserDaoImpl;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserDaoImpl userDaoImpl;
+
+    @Autowired
+    private ProductDaoImpl productDaoImpl;
 
     //
     //회원가입 컨트롤러
@@ -63,12 +70,23 @@ public class UserController {
         String userEmail = req.getParameter("userEmail");
         System.out.println("userEmail : " + userEmail);
 
+        //회원정보 확인
         String selectAccount = userDaoImpl.getUserInfo(userEmail);
         System.out.println(selectAccount);
 
+
+
         ModelAndView mv = new ModelAndView();
+        HttpSession session = req.getSession();
 
         if (selectAccount != null) {
+            //로그인 시 상품 정보를 select해서 같이 넘겨준다.
+            List<Map<Object,Object>> selectProduct = productDaoImpl.getProductInfo();
+            System.out.println(selectProduct);
+
+            //redirect를 하면 정보가 사라져서 session을 사용해
+            session.setAttribute("selectProduct",selectProduct);
+
             if (BCrypt.checkpw(userDto.getUserPassword(), selectAccount)) {
                 mv.setViewName("redirect:../view/main.jsp");
             }
