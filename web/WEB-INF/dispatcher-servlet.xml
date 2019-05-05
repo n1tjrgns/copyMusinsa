@@ -18,6 +18,7 @@
 
     <bean id="userController" class="com.fakesinsa.project.controller.UserController"/>
     <bean id="productController" class="com.fakesinsa.project.controller.ProductController"/>
+    <bean id="purchaseController" class="com.fakesinsa.project.controller.PurchaseController"/>
     <mvc:annotation-driven/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -7,17 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% if(session.getAttribute("selectProduct")==null){
-    %>
-    <script>
-        console.log('값 없음');
-    </script>
-<%
-}else{%>
-<script>
-    console.log('값 있음');
-</script>
-<%}%>
+
 <html>
 <head>
     <title>메인 페이지</title>
@@ -38,8 +28,11 @@
         <tbody>
         <c:forEach var="result" items="${selectProduct}">
         <tr>
+                <%--result.DB 칼럼 명--%>
             <td>${result.product_category}</td>
-            <td>${result.product_name}</td>
+            <td>
+                <a href="/FakeSinsa/view/purchase.do?productName=${result.product_name}&productCategory=${result.product_category}&productPrice=${result.product_price}&productDetail=${result.product_detail}">${result.product_name}</a>
+            </td>
             <td>${result.product_price}</td>
             <td>${result.product_detail}</td>
         </tr>
